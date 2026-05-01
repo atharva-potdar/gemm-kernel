@@ -17,12 +17,11 @@ int main() {
   std::vector<float> C(p * r, 0.0f);
 
   for (std::size_t i = 0; i < p; i++) {
-    for (std::size_t j = 0; j < r; j++) {
-      float sum = 0;
-      for (std::size_t k = 0; k < q; k++) {
-        sum += A[(i * q) + k] * B[j + (k * r)];
+    for (std::size_t k = 0; k < q; k++) {
+      float a_ik = A[(i * q) + k]; // remains the same
+      for (std::size_t j = 0; j < r; j++) {
+        C[(i * r) + j] += a_ik * B[j + (k * r)];
       }
-      C[i * r + j] = sum;
     }
   }
 
